@@ -1,4 +1,4 @@
-" Douglas Black
+" Sai Warang's vimrc, inspired by Douglas Black
 " Colors {{{
 syntax enable           " enable syntax processing
 colorscheme seti
