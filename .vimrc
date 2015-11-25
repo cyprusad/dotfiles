@@ -1,4 +1,4 @@
-" Sai Warang's vimrc, inspired by Douglas Black
+" Douglas Black
 " Colors {{{
 syntax enable           " enable syntax processing
 colorscheme seti
@@ -78,6 +78,10 @@ vnoremap <leader>y "+y
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 inoremap jk <esc>
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 " }}}
 " Powerline {{{
 "set encoding=utf-8
