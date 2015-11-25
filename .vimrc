@@ -1,4 +1,4 @@
-" Douglas Black
+" Sai Warang's vimrc, original work by Douglas Black
 " Colors {{{
 syntax enable           " enable syntax processing
 colorscheme seti
@@ -55,6 +55,11 @@ onoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
 xnoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
 onoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
 xnoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
+
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 " }}}
 " Leader Shortcuts {{{
 let mapleader=","
@@ -78,10 +83,6 @@ vnoremap <leader>y "+y
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 inoremap jk <esc>
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
 " }}}
 " Powerline {{{
 "set encoding=utf-8
