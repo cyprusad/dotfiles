@@ -26,9 +26,11 @@ set wildmenu
 set showmatch           " higlight matching parenthesis
 " }}}
 " Searching {{{
-set ignorecase          " ignore case when searching
-set incsearch           " search as characters are entered
-set hlsearch            " highlight all matches
+set ignorecase           " ignore case when searching
+set incsearch            " search as characters are entered
+set hlsearch             " highlight all matches
+" // to search for visually selected text
+vnoremap // y/<C-R>"<CR>
 " }}}
 " Folding {{{
 "=== folding ===
