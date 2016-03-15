@@ -1,4 +1,12 @@
 " Sai Warang's vimrc, original work by Douglas Black
+" Splits {{{
+set splitbelow
+set splitright
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-L> <C-W>l
+map <C-H> <C-W>h
+" }}}
 " Colors {{{
 syntax enable           " enable syntax processing
 colorscheme seti
