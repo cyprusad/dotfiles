@@ -86,13 +86,14 @@ nnoremap <leader>s :mksession<CR>
 nnoremap <leader>a :Ag 
 nnoremap <leader>c :SyntasticCheck<CR>:Errors<CR>
 nnoremap <leader>1 :set number!<CR>
-nnoremap <leader>d :Make! 
+nnoremap <leader>d "_d 
 nnoremap <leader>r :call RunTestFile()<CR>
 nnoremap <leader>g :call RunGoFile()<CR>
 vnoremap <leader>y "+y
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 inoremap jk <esc>
+vmap r "_dP
 " }}}
 " Powerline {{{
 "set encoding=utf-8
@@ -227,6 +228,18 @@ function! s:NextTextObject(motion, dir)
  
   exe "normal! ".a:dir.c."v".a:motion.c
 endfunction
+
+" if has("unix")
+"   let g:ctrlp_user_command = {
+"     \   'types': {
+"     \     1: ['.git/', 'git -C %s ls-files'],
+"     \     2: ['.hg/', 'hg --cwd %s manifest'],
+"     \   },
+"     \   'fallback': 'find %s -type f -maxdepth ' . g:ctrlp_max_depth .
+"     \               ' | head -' . g:ctrlp_max_files,
+"     \   'ignore': 1,
+"     \ }
+" endif
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
