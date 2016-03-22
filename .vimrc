@@ -14,6 +14,7 @@ colorscheme seti
 " Misc {{{
 set ttyfast                     " faster redraw
 set backspace=indent,eol,start
+set shell=bash\ -l
 " }}}
 " Spaces & Tabs {{{
 set tabstop=2           " 2 space tab
