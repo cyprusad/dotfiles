@@ -123,9 +123,40 @@ let g:syntastic_python_flake8_args='--ignore=E501'
 let g:syntastic_ignore_files = ['.java$']
 " }}}
 " Launch Config {{{
-runtime! debian.vim
 set nocompatible
-call pathogen#infect()
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'rking/ag.vim'
+Plugin 'teoljungberg/vim-grep'
+Plugin 'sjl/gundo.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'airblade/vim-gitgutter'
+
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-commentary'
+
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tmux-plugins/vim-tmux-focus-events'
+Plugin 'blueyed/vim-diminactive'
+
+" Languages
+Plugin 'nickhutchinson/vim-systemtap'
+Plugin 'tpope/vim-liquid'
+Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-rails'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'pangloss/vim-javascript'
+Plugin 'fatih/vim-go'
+
+call vundle#end()
+filetype plugin indent on
 " }}}
 "" Tmux {{{
 "if exists('$TMUX') " allows cursor change in tmux mode
