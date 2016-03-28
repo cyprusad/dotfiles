@@ -15,6 +15,8 @@ colorscheme seti
 set ttyfast                     " faster redraw
 set backspace=indent,eol,start
 set shell=bash\ -l
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
 " }}}
 " Spaces & Tabs {{{
 set tabstop=2           " 2 space tab
