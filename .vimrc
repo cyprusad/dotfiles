@@ -8,7 +8,6 @@ map <C-L> <C-W>l
 map <C-H> <C-W>h
 " }}}
 " Colors {{{
-syntax enable           " enable syntax processing
 colorscheme seti
 " }}}
 " Misc {{{
@@ -126,39 +125,34 @@ let g:syntastic_ignore_files = ['.java$']
 " }}}
 " Launch Config {{{
 set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'rking/ag.vim'
-Plugin 'teoljungberg/vim-grep'
-Plugin 'sjl/gundo.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'airblade/vim-gitgutter'
+call plug#begin('~/.vim/plugged')
+Plug 'VundleVim/Vundle.vim'
+Plug 'rking/ag.vim'
+Plug 'teoljungberg/vim-grep'
+Plug 'scrooloose/nerdtree'
+Plug 'airblade/vim-gitgutter'
 
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-commentary'
 
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tmux-plugins/vim-tmux-focus-events'
-Plugin 'blueyed/vim-diminactive'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'blueyed/vim-diminactive'
 
 " Languages
-Plugin 'nickhutchinson/vim-systemtap'
-Plugin 'tpope/vim-liquid'
-Plugin 'tpope/vim-markdown'
-Plugin 'tpope/vim-rails'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'pangloss/vim-javascript'
-Plugin 'fatih/vim-go'
+Plug 'nickhutchinson/vim-systemtap'
+Plug 'tpope/vim-liquid'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-rails'
+Plug 'vim-ruby/vim-ruby'
+Plug 'kchmck/vim-coffee-script'
+Plug 'pangloss/vim-javascript'
+Plug 'fatih/vim-go'
 
-call vundle#end()
-filetype plugin indent on
+call plug#end()
 " }}}
 "" Tmux {{{
 "if exists('$TMUX') " allows cursor change in tmux mode
