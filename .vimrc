@@ -84,12 +84,12 @@ nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>l :call ToggleNumber()<CR>
 nnoremap <leader><space> :noh<CR>
-nnoremap <leader>s :mksession<CR>
+nnoremap <leader>s *<C-O>:%s///gn<CR> 
 nnoremap <leader>a :Ag 
 nnoremap <leader>c :SyntasticCheck<CR>:Errors<CR>
 nnoremap <leader>1 :set number!<CR>
 nnoremap <leader>d "_d 
-nnoremap <leader>r :call RunTestFile()<CR>
+nmap <leader>r :e!<CR>
 nnoremap <leader>g :call RunGoFile()<CR>
 vnoremap <leader>y "+y
 vmap v <Plug>(expand_region_expand)
@@ -125,7 +125,7 @@ let g:syntastic_ignore_files = ['.java$']
 " }}}
 " Launch Config {{{
 set nocompatible
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/bundle')
 Plug 'VundleVim/Vundle.vim'
 Plug 'rking/ag.vim'
 Plug 'teoljungberg/vim-grep'
@@ -151,6 +151,8 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'kchmck/vim-coffee-script'
 Plug 'pangloss/vim-javascript'
 Plug 'fatih/vim-go'
+
+Plug 'rizzatti/dash.vim'
 
 call plug#end()
 " }}}
