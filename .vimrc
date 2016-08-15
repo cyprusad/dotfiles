@@ -129,7 +129,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'VundleVim/Vundle.vim'
 Plug 'rking/ag.vim'
 Plug 'teoljungberg/vim-grep'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'airblade/vim-gitgutter'
 
 Plug 'tpope/vim-endwise'
