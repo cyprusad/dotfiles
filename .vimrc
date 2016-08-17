@@ -12,10 +12,9 @@ colorscheme seti
 " }}}
 " Misc {{{
 set ttyfast                     " faster redraw
+set updatetime=250
 set backspace=indent,eol,start
 set shell=bash\ -l
-let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 0
 " }}}
 " Spaces & Tabs {{{
 set tabstop=2           " 2 space tab
