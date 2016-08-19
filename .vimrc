@@ -8,7 +8,9 @@ map <C-L> <C-W>l
 map <C-H> <C-W>h
 " }}}
 " Colors {{{
-colorscheme seti
+set background=light
+let g:solarized_termcolors=256
+colorscheme solarized 
 " }}}
 " Misc {{{
 set ttyfast                     " faster redraw
