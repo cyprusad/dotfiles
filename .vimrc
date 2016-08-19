@@ -17,6 +17,7 @@ set ttyfast                     " faster redraw
 set updatetime=250
 set backspace=indent,eol,start
 set shell=bash\ -l
+set autoread
 " }}}
 " Spaces & Tabs {{{
 set tabstop=2           " 2 space tab
@@ -66,6 +67,8 @@ noremap <Left> <NOP>
 noremap <Right> <NOP>
 " }}}
 " Leader Shortcuts {{{
+nnoremap ; :
+vnoremap ; :
 let mapleader=","
 nnoremap <leader>m :silent make\|redraw!\|cw<CR>
 nnoremap <leader>w :NERDTree<CR>
