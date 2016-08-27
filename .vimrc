@@ -8,7 +8,12 @@ map <C-L> <C-W>l
 map <C-H> <C-W>h
 " }}}
 " Colors {{{
-set background=light
+let hour = strftime("%H")
+if 6 <= hour && hour < 18
+  set background=light
+else
+  set background=dark
+endif
 let g:solarized_termcolors=256
 colorscheme solarized 
 " }}}
