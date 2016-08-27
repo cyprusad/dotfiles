@@ -9,12 +9,14 @@ map <C-H> <C-W>h
 " }}}
 " Colors {{{
 let hour = strftime("%H")
-if 6 <= hour && hour < 18
-  set background=light
-else
+if hour > 18
   set background=dark
+else
+  set background=light
 endif
 let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+set t_Co=256
 colorscheme solarized 
 " }}}
 " Misc {{{
@@ -102,7 +104,6 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'airblade/vim-gitgutter'
 
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 
@@ -111,7 +112,6 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'blueyed/vim-diminactive'
 
 " Languages
-Plug 'nickhutchinson/vim-systemtap'
 Plug 'tpope/vim-liquid'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
