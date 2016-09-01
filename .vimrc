@@ -8,12 +8,13 @@ map <C-L> <C-W>l
 map <C-H> <C-W>h
 " }}}
 " Colors {{{
-let hour = strftime("%H")
-if hour > 18
-  set background=dark
-else
-  set background=light
-endif
+" let hour = strftime("%H")
+" if hour > 18
+"   set background=light
+" else
+"   set background=light
+" endif
+set background=dark
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 set t_Co=256
@@ -110,6 +111,9 @@ Plug 'tpope/vim-commentary'
 Plug 'altercation/vim-colors-solarized'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'blueyed/vim-diminactive'
+
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Languages
 Plug 'tpope/vim-liquid'
