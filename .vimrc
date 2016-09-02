@@ -84,7 +84,8 @@ nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader><space> :noh<CR>
 nnoremap <leader>s *<C-O>:%s///gn<CR>
-nnoremap <leader>a :Ag
+nnoremap <leader>a :Ag<space>
+nnoremap <leader>f :Files<CR>
 nnoremap <leader>d "_d
 nmap <leader>r :e!<CR>
 vnoremap <leader>y "+y
@@ -114,6 +115,7 @@ Plug 'blueyed/vim-diminactive'
 
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Languages
 Plug 'tpope/vim-liquid'
