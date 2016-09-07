@@ -86,6 +86,7 @@ nnoremap <leader><space> :noh<CR>
 nnoremap <leader>s *<C-O>:%s///gn<CR>
 nnoremap <leader>a :Ag<space>
 nnoremap <leader>f :Files<CR>
+nnoremap <leader>l :Dash<CR>
 nnoremap <leader>d "_d
 nmap <leader>r :e!<CR>
 vnoremap <leader>y "+y
