@@ -1,0 +1,24 @@
+[user]
+  name = Sai Warang
+  email = cyprusad@gmail.com
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+  ui = auto
+[merge]
+  tool = vimdiff
+[interactive]
+  singlekey = true
+[core]
+  editor = vim
+[push]
+  default = current
+[pull]
+  default = current
+  rebase = true
+[credential]
+  helper = osxkeychain
+[hub]
+  protocol = ssh

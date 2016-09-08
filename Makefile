@@ -1,9 +1,11 @@
 all: install
 
-install: 
+install:
 		cp .vimrc ~/
 		cp .tmux.conf ~/
+		cp .gitconfig ~/
 
-update: 
+update:
 		cp ~/.vimrc .
 		cp ~/.tmux.conf .
+		cp ~/.gitconfig .
