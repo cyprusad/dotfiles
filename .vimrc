@@ -18,7 +18,7 @@ set background=dark
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 set t_Co=256
-colorscheme solarized 
+colorscheme solarized
 " }}}
 " Misc {{{
 set ttyfast                     " faster redraw
@@ -125,7 +125,7 @@ Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'kchmck/vim-coffee-script'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript'}
-Plug 'fatih/vim-go', { 'for': 'go' } 
+Plug 'fatih/vim-go', { 'for': 'go' }
 
 Plug 'rizzatti/dash.vim'
 
