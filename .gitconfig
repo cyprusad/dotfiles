@@ -19,6 +19,6 @@
   default = current
   rebase = true
 [credential]
-  helper = osxkeychain
+	helper = osxkeychain
 [hub]
   protocol = ssh
