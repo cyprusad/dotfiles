@@ -88,6 +88,7 @@ nnoremap <leader>a :Ag<space>
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>l :Dash<CR>
 nnoremap <leader>d "_d
+nnoremap <leader>sss :norm csw'X<CR> " to change Ruby symbol to string
 nmap <leader>r :e!<CR>
 vnoremap <leader>y "+y
 vmap v <Plug>(expand_region_expand)
@@ -109,6 +110,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'tmux-plugins/vim-tmux-focus-events'
