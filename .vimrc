@@ -26,6 +26,10 @@ set updatetime=250
 set backspace=indent,eol,start
 set shell=bash\ -l
 set autoread
+abbr debug binding.pry
+abbr debu binding.pry
+abbr debugger binding.pry
+abbr deb binding.pry
 " }}}
 " Spaces & Tabs {{{
 set tabstop=2           " 2 space tab
