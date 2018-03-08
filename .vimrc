@@ -48,6 +48,7 @@ set cursorline          " highlight current line
 set wildmenu
 "set lazyredraw
 set showmatch           " higlight matching parenthesis
+set colorcolumn=120     " indicate when over 120 characters in a line
 " }}}
 " Searching {{{
 set ignorecase           " ignore case when searching
