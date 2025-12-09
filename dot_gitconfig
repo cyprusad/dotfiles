@@ -1,0 +1,107 @@
+[user]
+    name = Sai Warang
+    email = cyprusad@gmail.com
+
+[core]
+    editor = nvim
+    pager = bat --paging=always --style=plain
+    autocrlf = input
+    excludesfile = ~/.gitignore_global
+    whitespace = fix
+    fsmonitor = true
+    untrackedcache = true
+
+[init]
+    defaultBranch = main
+
+[color]
+    ui = auto
+
+[column]
+    ui = auto
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = -version:refname
+
+[pull]
+    rebase = true
+
+[push]
+    default = current
+    autoSetupRemote = true
+    followTags = true
+
+[fetch]
+    prune = true
+    prunetags = true
+
+[rebase]
+    autoStash = true
+    autoSquash = true
+
+[merge]
+    tool = nvim
+    conflictstyle = zdiff3
+
+[mergetool]
+    keepBackup = false
+    prompt = false
+
+[mergetool "nvim"]
+    cmd = nvim -d "$LOCAL" "$BASE" "$REMOTE" "$MERGED" -c 'wincmd J | wincmd ='
+
+[diff]
+    tool = nvim
+    algorithm = histogram
+    colorMoved = default
+    colorMovedWS = allow-indentation-change
+
+[difftool]
+    prompt = false
+
+[difftool "nvim"]
+    cmd = nvim -d "$LOCAL" "$REMOTE"
+
+[interactive]
+    diffFilter = bat --paging=never --style=plain --color=always
+
+[alias]
+    lg = !lazygit
+    st = status -sb
+    co = checkout
+    br = branch
+    ci = commit
+    ca = commit --amend
+    can = commit --amend --no-edit
+    unstage = reset HEAD --
+    discard = checkout --
+    last = log -1 HEAD --stat
+    graph = log --oneline --graph --all --decorate
+    hist = log --pretty=format:'%C(yellow)%h%Creset %C(cyan)%ad%Creset | %s%C(auto)%d%Creset %C(dim)[%an]%Creset' --graph --date=short
+    branches = branch -a --sort=-committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+    undo = reset --soft HEAD~1
+
+[web]
+    browser = open
+
+[url "https://github.com/"]
+    insteadOf = gh:
+
+[url "git@github.com:"]
+    insteadOf = ssh:gh:
+
+[rerere]
+    enabled = true
+    autoUpdate = true
+
+[help]
+    autocorrect = prompt
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
