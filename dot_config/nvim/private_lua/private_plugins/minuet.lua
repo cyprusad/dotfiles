@@ -44,7 +44,19 @@ return {
     -- Frontend: Use blink.cmp (no virtual text needed)
     frontend = "blink",
     -- Auto-trigger on code filetypes
-    auto_trigger_ft = { "python", "lua", "javascript", "rust", "cpp" }, -- Customize
+    auto_trigger_ft = {
+      "python",
+      "lua",
+      "javascript",
+      "rust",
+      "ruby",
+      "cpp",
+      "typescript",
+      "typescriptreact",
+      "javascriptreact",
+      "go",
+      "c",
+    }, -- Customize
     -- Context: Balance speed/quality
     context_window = 4000, -- ~1k tokens; smaller = faster cloud calls
     -- Completions: Single suggestion (Copilot-style)

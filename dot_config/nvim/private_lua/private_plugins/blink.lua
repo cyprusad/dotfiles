@@ -20,11 +20,8 @@ return {
             module = "minuet.blink", -- official module name (2025)
             async = true, -- required for streaming cloud responses
             score_offset = 100, -- big boost so it beats LSP/snippets
-            opts = {
-              timeout_ms = 4000, -- generous for cloud latency
-            },
+            timeout_ms = 4000, -- generous for cloud latency
           },
-
           dictionary = {
             module = "blink-cmp-dictionary",
             name = "Dict",
@@ -44,11 +41,12 @@ return {
           },
         },
       },
-
       completion = {
-        ghost_text = { enabled = false }, -- you already disabled it → keep it
+        ghost_text = { enabled = false },
+        trigger = {
+          prefetch_on_insert = false,
+        },
       },
-      documentation = { auto_show = true },
     },
   },
 }
