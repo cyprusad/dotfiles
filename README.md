@@ -22,7 +22,7 @@ This repository contains my personal dotfiles, managed using [chezmoi](https://w
 
 2. Initialize and apply dotfiles:
    ```bash
-   chezmoi init https://github.com/your-username/your-dotfiles-repo.git
+   chezmoi init git@github.com:cyprusad/dotfiles.git
    chezmoi apply
    ```
 
