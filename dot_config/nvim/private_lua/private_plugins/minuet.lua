@@ -68,6 +68,7 @@ return {
       enabled_auto_trigger_ft = { "python", "lua", "javascript", "rust", "cpp" },
     },
     -- Keymaps: Minimal; rely on blink's Tab for accept
+    -- TODO: I don't think these do anything right now, fix these or remove them
     keymap = {
       toggle = "<leader>mt", -- :MinuetToggle
       change_preset = "<leader>mp", -- e.g., <leader>mp claude_fallback
