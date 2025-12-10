@@ -43,6 +43,7 @@ return {
     },
     -- Frontend: Use blink.cmp (no virtual text needed)
     frontend = "blink",
+
     -- Auto-trigger on code filetypes
     auto_trigger_ft = {
       "python",
