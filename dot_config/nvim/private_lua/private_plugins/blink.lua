@@ -10,7 +10,13 @@ return {
     },
     opts = {
       sources = {
-        default = { "minuet", "lsp", "snippets", "path", "dictionary", "buffer" },
+        default = function(ctx)
+          if vim.bo.filetype == "markdown" then
+            return { "lsp", "snippets", "path", "dictionary", "buffer" }
+          else
+            return { "minuet", "lsp", "snippets", "path", "dictionary", "buffer" }
+          end
+        end,
 
         providers = {
           minuet = {
@@ -26,8 +32,7 @@ return {
             min_keyword_length = 3,
             opts = {
               dictionary_files = {
-                "/usr/share/dict/words",
-                "/usr/share/dict/connectives",
+                vim.fn.expand("~/.config/nvim/dict/common-words.txt"),
                 "/usr/share/dict/propernames",
               },
             },
@@ -37,6 +42,11 @@ return {
             max_items = 5,
             score_offset = -100,
           },
+        },
+
+        -- Add this filetype-specific configuration
+        filetype = {
+          markdown = { "lsp", "snippets", "path", "dictionary", "buffer" }, -- Same as default but without minuet
         },
       },
 

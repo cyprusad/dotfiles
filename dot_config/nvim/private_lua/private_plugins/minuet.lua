@@ -5,6 +5,53 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim", -- Required (already in LazyVim)
   },
+  keys = {
+    {
+      "<leader>mt",
+      function()
+        -- Check current status first
+        local initial_status = require("minuet").config.blink.enable_auto_complete
+        vim.cmd("Minuet blink toggle")
+
+        -- Use a delay and verify the toggle worked
+        vim.defer_fn(function()
+          local new_status = require("minuet").config.blink.enable_auto_complete
+
+          if new_status == initial_status then
+            vim.notify("Toggle failed - status unchanged: " .. tostring(new_status), vim.log.levels.WARN)
+          else
+            local state = new_status and "enabled" or "disabled"
+            vim.notify("Minuet autocompletion: " .. state, vim.log.levels.INFO)
+          end
+        end, 50)
+      end,
+      desc = "Toggle Minuet autocompletion",
+    },
+    {
+      "<leader>mm",
+      function()
+        -- Opens interactive model selection menu
+        vim.cmd("Minuet change_model")
+      end,
+      desc = "Minuet: select model",
+    },
+    {
+      "<leader>md",
+      function()
+        vim.cmd("Minuet change_model openai_compatible:moonshotai/kimi-k2")
+        vim.notify("Minuet: OpenRouter kimi-k2", vim.log.levels.INFO)
+      end,
+      desc = "Minuet: default (kimi-k2)",
+    },
+    {
+      "<leader>mf",
+      function()
+        vim.cmd("Minuet change_model claude:claude-3-haiku-20240307")
+        vim.notify("Minuet: Claude Haiku fallback", vim.log.levels.INFO)
+      end,
+      desc = "Minuet: Claude fallback",
+    },
+  },
   opts = {
     -- Default provider: OpenRouter (primary)
     provider = "openai_compatible",
@@ -44,35 +91,16 @@ return {
     -- Frontend: Use blink.cmp (no virtual text needed)
     frontend = "blink",
 
-    -- Auto-trigger on code filetypes
-    auto_trigger_ft = {
-      "python",
-      "lua",
-      "javascript",
-      "rust",
-      "ruby",
-      "cpp",
-      "typescript",
-      "typescriptreact",
-      "javascriptreact",
-      "go",
-      "c",
-    }, -- Customize
     -- Context: Balance speed/quality
     context_window = 4000, -- ~1k tokens; smaller = faster cloud calls
     -- Completions: Single suggestion (Copilot-style)
     n_completions = 1,
     -- LSP integration for context (symbols/diagnostics)
     lsp = {
-      enabled = true,
-      enabled_auto_trigger_ft = { "python", "lua", "javascript", "rust", "cpp" },
+      disabled_ft = { "*" },
+      -- enabled_auto_trigger_ft = { "python", "lua", "javascript", "rust", "cpp", "typescript" },
     },
-    -- Keymaps: Minimal; rely on blink's Tab for accept
-    -- TODO: I don't think these do anything right now, fix these or remove them
-    keymap = {
-      toggle = "<leader>mt", -- :MinuetToggle
-      change_preset = "<leader>mp", -- e.g., <leader>mp claude_fallback
-    },
+
     -- System prompt for code focus
     system_prompt = "You are an expert code completion assistant. Generate concise, syntactically correct code snippets that fit seamlessly into the existing context. Do not explain or add comments unless requested.",
   },
