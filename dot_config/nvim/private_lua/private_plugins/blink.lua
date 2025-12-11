@@ -43,11 +43,6 @@ return {
             score_offset = -100,
           },
         },
-
-        -- Add this filetype-specific configuration
-        filetype = {
-          markdown = { "lsp", "snippets", "path", "dictionary", "buffer" }, -- Same as default but without minuet
-        },
       },
 
       -- Appearance settings for kind icons (the icon showing WHAT type of completion)
