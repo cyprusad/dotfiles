@@ -5,7 +5,7 @@ return {
   --    LazyVim already includes Mason, we're just extending its config
   -----------------------------------------------------------------------------
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = function(_, opts)
       -- opts is the existing config from LazyVim
       -- We're adding to the ensure_installed list
@@ -13,7 +13,6 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "pyright", -- Python LSP (type checking, go-to-def, etc.)
         "ruff", -- Fast linter + formatter
-        "debugpy", -- Python debugger
       })
     end,
   },
@@ -111,7 +110,6 @@ return {
   -----------------------------------------------------------------------------
   {
     "linux-cultist/venv-selector.nvim",
-    branch = "regexp", -- Use the newer regexp branch
     dependencies = {
       "neovim/nvim-lspconfig",
       "nvim-telescope/telescope.nvim",
@@ -124,6 +122,7 @@ return {
       { "<leader>cV", "<cmd>VenvSelectCached<cr>", desc = "Select Cached VirtualEnv" },
     },
     opts = {
+      dap_enabled = true,
       settings = {
         search = {
           -- Where to look for venvs
@@ -148,6 +147,7 @@ return {
     dependencies = {
       {
         "mfussenegger/nvim-dap-python",
+        ft = "python",
         keys = {
           {
             "<leader>dPt",
@@ -165,30 +165,20 @@ return {
           },
         },
         config = function()
-          -- Wait for mason-registry to be ready
-          local mason_registry = require("mason-registry")
-          -- Helper function to setup debugpy
-          local function setup_debugpy()
-            if not mason_registry.is_installed("debugpy") then
-              vim.notify("debugpy not installed. Run :MasonInstall debugpy", vim.log.levels.WARN)
-              return
-            end
-            local debugpy_package = mason_registry.get_package("debugpy")
-            -- Method exists but mason.nvim lacks type annotations
-            ---@diagnostic disable-next-line: undefined-field
-            local debugpy_path = debugpy_package:get_install_path()
-            local python_path = debugpy_path .. "/venv/bin/python"
-            require("dap-python").setup(python_path)
-          end
-          -- mason-registry might not be ready immediately
-          if mason_registry.refresh then
-            mason_registry.refresh(setup_debugpy)
-          else
-            setup_debugpy()
-          end
+          -- Use the venv's debugpy if available, otherwise fall back to a working python
+          -- venv-selector will override this automatically when dap_enabled = true
+          local path = vim.fn.stdpath("data") .. "/venv-selector-debugpy-fallback/bin/python"
+            or vim.fn.exepath("python3")
+            or vim.fn.exepath("python")
+
+          require("dap-python").setup(path)
+
+          -- Optional: nicer test runner settings
+          require("dap-python").test_runner = "pytest"
         end,
       },
     },
+    config = function() end, -- dap itself needs no config in LazyVim
   },
 
   -----------------------------------------------------------------------------

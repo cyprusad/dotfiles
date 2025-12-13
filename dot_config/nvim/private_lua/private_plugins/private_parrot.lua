@@ -13,15 +13,32 @@ local M = {
   end,
   opts = {
     providers = {
-      openai = {
-        api_key = os.getenv("OPENAI_API_KEY"),
-        -- models = { "gpt-4-turbo" }, -- default
-      },
+      -- openai = {
+      --   api_key = os.getenv("OPENAI_API_KEY"),
+      --   -- models = { "gpt-4-turbo" }, -- default
+      -- },
       anthropic = {
+        name = "anthropic",
         api_key = os.getenv("ANTHROPIC_API_KEY"),
-        topic_prompt = "You only respond with 3 to 4 words to summarize the past conversation.",
+        headers = {
+          ["x-api-key"] = os.getenv("ANTHROPIC_API_KEY"),
+          ["anthropic-version"] = "2023-06-01",
+          ["anthropic-beta"] = "output-128k-2025-02-19,context-1m-2025-08-07", -- enables higher output + extended context if available
+        },
+        endpoint = "https://api.anthropic.com/v1/messages", -- Required
+        preprocess_payload = function(payload, provider)
+          if payload.messages[1] and payload.messages[1].role == "system" then
+            payload.system = payload.messages[1].content
+            table.remove(payload.messages, 1)
+          end
+          return payload
+        end,
+
+        model = "claude-opus-4-5-20251101",
+        model_endpoint = "https://api.anthropic.com/v1/models",
         -- usually a cheap and fast model to generate the chat topic based on
         -- the whole chat history
+        topic_prompt = "You only respond with 3 to 4 words to summarize the past conversation.",
         topic = {
           model = "claude-3-haiku-20240307",
           params = { max_tokens = 32 },
@@ -36,18 +53,6 @@ local M = {
           },
           command = { max_tokens = 4096 },
         },
-      },
-      gemini = {
-        api_key = os.getenv("GEMINI_API_KEY"),
-      },
-      github = {
-        api_key = os.getenv("GITHUB_TOKEN"),
-      },
-      xai = {
-        api_key = os.getenv("XAI_API_KEY"),
-      },
-      groq = {
-        api_key = os.getenv("GROQ_API_KEY"),
       },
       -- openrouter = {
       --   name = "openrouter",
