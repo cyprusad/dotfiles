@@ -1,1 +1,26 @@
-macos-option-as-alt = left
+macos-option-as-alt = left # Does this even work?
+
+# ===== SPLITS - HOME ROW FRIENDLY =====
+
+# Create splits
+keybind = ctrl+shift+enter=new_split:auto
+keybind = ctrl+shift+backslash=new_split:right
+keybind = ctrl+shift+minus=new_split:down
+
+# Navigate between Ghostty splits
+keybind = super+h=goto_split:left
+keybind = super+j=goto_split:bottom
+keybind = super+k=goto_split:top
+keybind = super+l=goto_split:right
+
+# Resize Ghostty splits
+keybind = ctrl+shift+h=resize_split:left,50
+keybind = ctrl+shift+j=resize_split:down,50
+keybind = ctrl+shift+k=resize_split:up,50
+keybind = ctrl+shift+l=resize_split:right,50
+
+# Close split
+keybind = ctrl+shift+w=close_surface
+
+# Equalize splits
+keybind = ctrl+shift+equal=equalize_splits
