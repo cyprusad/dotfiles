@@ -101,5 +101,11 @@ return {
         },
       },
     },
+    config = function(_, opts)
+      -- Add the minuet keymap now that the module is available
+      opts.keymap = opts.keymap or {}
+      opts.keymap["<A-y>"] = require("minuet").make_blink_map()
+      require("blink.cmp").setup(opts)
+    end,
   },
 }

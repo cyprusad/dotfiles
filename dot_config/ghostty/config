@@ -1,4 +1,5 @@
-macos-option-as-alt = left # Does this even work?
+# Set right option key as Alt
+macos-option-as-alt = right
 
 # ===== SPLITS - HOME ROW FRIENDLY =====
 
