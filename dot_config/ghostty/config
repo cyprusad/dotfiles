@@ -25,3 +25,7 @@ keybind = ctrl+shift+w=close_surface
 
 # Equalize splits
 keybind = ctrl+shift+equal=equalize_splits
+
+# ===== SCROLLING ======
+keybind = super+ctrl+u=scroll_page_fractional:-0.5
+keybind = super+ctrl+d=scroll_page_fractional:0.5
