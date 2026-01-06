@@ -136,7 +136,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 
 # ZK
-ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Zettelkasten" ~/Zettelkasten
 export ZK_NOTEBOOK_DIR="$HOME/Zettelkasten"
 
 # Global ZK aliases
