@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/.config/zk/scripts:$PATH
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -103,6 +103,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export EDITOR='nvim'
+export GITHUB_USERNAME='cyprusad'
+
 
 # From the old Zsh file
 export NVM_DIR="$HOME/.nvm"
@@ -121,3 +124,24 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
 export ANDROID_HOME=$HOME/Library/Android/sdk 
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+. "$HOME/.local/bin/env"
+
+# bun completions
+[ -s "/Users/sai/.bun/_bun" ] && source "/Users/sai/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+# ZK
+ln -s "$HOME/Library/Mobile Documents/com~apple~CloudDocs/Zettelkasten" ~/Zettelkasten
+export ZK_NOTEBOOK_DIR="$HOME/Zettelkasten"
+
+# Global ZK aliases
+alias zkh='zk --help'
+alias zkv='zk --version'
+alias zki='zk index'
+alias zkb='zk biblist'
+alias zkf='zk bnf'  # Fuzzy book note creation

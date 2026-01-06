@@ -1,0 +1,21 @@
+# Global zk configuration
+# This file contains universal zk settings and aliases
+
+[note]
+# Default note settings for all notebooks
+filename = "{{id}}"
+
+[alias]
+# Universal zk commands that work across all notebooks
+zk-help = "zk --help"
+zk-version = "zk --version"
+zk-index = "zk index"
+
+# Bibliography commands (work with any notebook that has bibliography/)
+biblist = "zk list bibliography"
+bibhelp = "echo 'ZK Commands:\n  zk biblist              - List all bibliography entries\n  zk bnf                  - Create book note with fuzzy search\n  zk booksearch BOOK      - Search notes by book tag\n  zk zk-help              - Show zk help\n\nGlobal Aliases:\n  zkh, zkv, zki, zkb, zkf'"
+
+# Book note commands - these assume standard notebook structure
+bnf = "~/.config/zk/scripts/create-book-note.sh"
+booknote-fzf = "~/.config/zk/scripts/create-book-note.sh"
+booksearch = "zk list --tag $@"
