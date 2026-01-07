@@ -144,3 +144,9 @@ alias zkv='zk --version'
 alias zki='zk index'
 alias zkb='zk biblist'
 alias zkf='zk bnf'  # Fuzzy book note creation
+
+# Journal entry creation aliases (auto-cd to notebook)
+zkw() { cd "$ZK_NOTEBOOK_DIR" && zk weekly }    # Create weekly journal entry
+zkm() { cd "$ZK_NOTEBOOK_DIR" && zk monthly }   # Create monthly journal entry
+zkq() { cd "$ZK_NOTEBOOK_DIR" && zk quarterly } # Create quarterly journal entry
+zky() { cd "$ZK_NOTEBOOK_DIR" && zk yearly }    # Create yearly journal entry
