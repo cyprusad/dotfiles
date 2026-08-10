@@ -6,26 +6,12 @@ return {
         "Kaiser-Yang/blink-cmp-dictionary",
         dependencies = { "nvim-lua/plenary.nvim" },
       },
-      "milanglacier/minuet-ai.nvim",
     },
     opts = {
       sources = {
-        default = function(ctx)
-          if vim.bo.filetype == "markdown" then
-            return { "lsp", "snippets", "path", "dictionary", "buffer" }
-          else
-            return { "minuet", "lsp", "snippets", "path", "dictionary", "buffer" }
-          end
-        end,
+        default = { "lsp", "snippets", "path", "dictionary", "buffer" },
 
         providers = {
-          minuet = {
-            name = "minuet", -- Changed to "minuet" so source_icon lookup works
-            module = "minuet.blink",
-            async = true,
-            score_offset = 100,
-            timeout_ms = 4000,
-          },
           dictionary = {
             module = "blink-cmp-dictionary",
             name = "Dict",
@@ -73,7 +59,7 @@ return {
             columns = {
               { "label", "label_description", gap = 1 },
               { "kind_icon", "kind" }, -- Shows provider icon + name (e.g., 󱂇 Openrouter)
-              { "source_icon" }, -- Shows source icon (e.g., 󱗻 for minuet)
+              { "source_icon" },
             },
             components = {
               source_icon = {
@@ -81,7 +67,6 @@ return {
                 text = function(ctx)
                   -- Map source names to icons
                   local source_icons = {
-                    minuet = "󱗻", -- AI source
                     lsp = "", -- Language server
                     snippets = "", -- Snippets
                     path = "", -- File paths
@@ -101,9 +86,6 @@ return {
       },
     },
     config = function(_, opts)
-      -- Add the minuet keymap now that the module is available
-      opts.keymap = opts.keymap or {}
-      opts.keymap["<A-y>"] = require("minuet").make_blink_map()
       require("blink.cmp").setup(opts)
     end,
   },
