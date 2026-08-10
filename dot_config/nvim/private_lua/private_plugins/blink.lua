@@ -57,7 +57,6 @@ return {
           gemini = "",
           Groq = "",
           Openrouter = "󱂇",
-          Ollama = "󰳆",
           ["Llama.cpp"] = "󰳆",
           Deepseek = "",
         },

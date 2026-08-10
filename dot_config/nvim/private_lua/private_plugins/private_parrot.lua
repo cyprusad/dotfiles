@@ -5,10 +5,6 @@ local M = {
   dev = vim.fn.has("macunix") == 1 and vim.fn.expand("$USER") == "frankroeder",
   lazy = false,
   config = function(_, opts)
-    -- add ollama if executable found
-    if vim.fn.executable("ollama") == 1 then
-      opts.providers["ollama"] = {}
-    end
     require("parrot").setup(opts)
   end,
   opts = {
