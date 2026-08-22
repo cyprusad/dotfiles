@@ -1,5 +1,7 @@
-# Set right option key as Alt
+{{- if eq .chezmoi.os "darwin" }}
+# Set right option key as Alt on macOS only.
 macos-option-as-alt = right
+{{- end }}
 
 # ===== SPLITS - HOME ROW FRIENDLY =====
 

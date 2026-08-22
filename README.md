@@ -26,4 +26,9 @@ This repository contains my personal dotfiles, managed using [chezmoi](https://w
    chezmoi apply
    ```
 
+Platform-specific files are rendered or ignored by chezmoi. The Hyprland
+configuration is Linux-only and is excluded on macOS; macOS-specific Ghostty,
+Git, Android, and zsh settings are only rendered on macOS. The Linux/Omarchy
+apply excludes `.zshrc` because Omarchy uses Bash.
+
 For detailed instructions and advanced usage, see the [chezmoi documentation](https://www.chezmoi.io/quick-start/).

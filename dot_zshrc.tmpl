@@ -119,20 +119,22 @@ source <(fzf --zsh)
 eval "$(ruby ~/.local/try.rb init ~/src/tries)"
 
 
-# Things needed to get Expo creating React Native builds in Android
+{{- if eq .chezmoi.os "darwin" }}
+# Things needed to get Expo creating React Native builds in Android on macOS.
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
-export ANDROID_HOME=$HOME/Library/Android/sdk 
+export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+{{- end }}
 
 . "$HOME/.local/bin/env"
-
-# bun completions
-[ -s "/Users/sai/.bun/_bun" ] && source "/Users/sai/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# Bun completions, portable across macOS and Linux.
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
 
 # ZK

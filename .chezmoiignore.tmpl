@@ -1,0 +1,7 @@
+{{- if ne .chezmoi.os "linux" }}
+# Hyprland and Omarchy are Linux-only. Never deploy these entries to macOS.
+.config/hypr/
+{{- else }}
+# Omarchy uses Bash; keep the zsh configuration available for macOS only.
+.zshrc
+{{- end }}

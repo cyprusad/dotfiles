@@ -85,7 +85,7 @@
     undo = reset --soft HEAD~1
 
 [web]
-    browser = open
+    browser = {{ if eq .chezmoi.os "darwin" }}open{{ else }}xdg-open{{ end }}
 
 [url "https://github.com/"]
     insteadOf = gh:
