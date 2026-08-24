@@ -30,10 +30,15 @@ hl.config({
   general = {
     gaps_in = 2,
     gaps_out = 4,
+    -- Keep a subtle outline around windows so the focused one is obvious.
+    border_size = 3,
   },
 
   decoration = {
     rounding = 8,
+    -- Slightly subdue unfocused windows to make the active one easier to spot.
+    dim_inactive = true,
+    dim_strength = 0.18,
   },
 })
 
