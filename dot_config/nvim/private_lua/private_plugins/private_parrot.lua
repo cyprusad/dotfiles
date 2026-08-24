@@ -1,3 +1,72 @@
+local function get_openrouter_api_key()
+  local key = os.getenv("OPENROUTER_API_KEY")
+  if key and key ~= "" then
+    return key
+  end
+
+  if vim.fn.has("linux") ~= 1 then
+    return nil
+  end
+
+  local env_file = vim.fn.expand("~/.openrouter.env")
+  if vim.fn.filereadable(env_file) == 1 then
+    for _, line in ipairs(vim.fn.readfile(env_file)) do
+      local value = line:match("^%s*OPENROUTER_API_KEY%s*=%s*(.-)%s*$")
+        or line:match("^%s*export%s+OPENROUTER_API_KEY%s*=%s*(.-)%s*$")
+      if value and value ~= "" then
+        return value:gsub("^['\"]", ""):gsub("['\"]$", "")
+      end
+    end
+  end
+end
+
+local providers = {}
+
+if os.getenv("ANTHROPIC_API_KEY") then
+  providers.anthropic = {
+    name = "anthropic",
+    api_key = os.getenv("ANTHROPIC_API_KEY"),
+    headers = {
+      ["x-api-key"] = os.getenv("ANTHROPIC_API_KEY"),
+      ["anthropic-version"] = "2023-06-01",
+      ["anthropic-beta"] = "output-128k-2025-02-19,context-1m-2025-08-07",
+    },
+    endpoint = "https://api.anthropic.com/v1/messages",
+    preprocess_payload = function(payload, provider)
+      if payload.messages[1] and payload.messages[1].role == "system" then
+        payload.system = payload.messages[1].content
+        table.remove(payload.messages, 1)
+      end
+      return payload
+    end,
+    model = "claude-opus-4-5-20251101",
+    model_endpoint = "https://api.anthropic.com/v1/models",
+    topic_prompt = "You only respond with 3 to 4 words to summarize the past conversation.",
+    topic = {
+      model = "claude-3-haiku-20240307",
+      params = { max_tokens = 32 },
+    },
+    params = {
+      chat = { max_tokens = 4096 },
+      command = { max_tokens = 4096 },
+    },
+  }
+end
+
+if vim.fn.has("linux") == 1 then
+  providers.openrouter = {
+    name = "openrouter",
+    api_key = get_openrouter_api_key,
+    endpoint = "https://openrouter.ai/api/v1/chat/completions",
+    model = "stealth/ox-alpha",
+    topic_prompt = "You only respond with 3 to 4 words to summarize the past conversation.",
+    params = {
+      chat = { max_tokens = 4096, reasoning = { effort = "high" } },
+      command = { max_tokens = 4096, reasoning = { effort = "high" } },
+    },
+  }
+end
+
 local M = {
   "frankroeder/parrot.nvim",
   event = "VeryLazy",
@@ -5,60 +74,17 @@ local M = {
   dev = vim.fn.has("macunix") == 1 and vim.fn.expand("$USER") == "frankroeder",
   lazy = false,
   config = function(_, opts)
-    require("parrot").setup(opts)
+    local parrot = require("parrot")
+    parrot.setup(opts)
+    vim.schedule(function()
+      if parrot.chat_handler and vim.fn.has("linux") == 1 then
+        parrot.chat_handler:set_provider("openrouter", true)
+        parrot.chat_handler:set_provider("openrouter", false)
+      end
+    end)
   end,
   opts = {
-    providers = {
-      -- openai = {
-      --   api_key = os.getenv("OPENAI_API_KEY"),
-      --   -- models = { "gpt-4-turbo" }, -- default
-      -- },
-      anthropic = {
-        name = "anthropic",
-        api_key = os.getenv("ANTHROPIC_API_KEY"),
-        headers = {
-          ["x-api-key"] = os.getenv("ANTHROPIC_API_KEY"),
-          ["anthropic-version"] = "2023-06-01",
-          ["anthropic-beta"] = "output-128k-2025-02-19,context-1m-2025-08-07", -- enables higher output + extended context if available
-        },
-        endpoint = "https://api.anthropic.com/v1/messages", -- Required
-        preprocess_payload = function(payload, provider)
-          if payload.messages[1] and payload.messages[1].role == "system" then
-            payload.system = payload.messages[1].content
-            table.remove(payload.messages, 1)
-          end
-          return payload
-        end,
-
-        model = "claude-opus-4-5-20251101",
-        model_endpoint = "https://api.anthropic.com/v1/models",
-        -- usually a cheap and fast model to generate the chat topic based on
-        -- the whole chat history
-        topic_prompt = "You only respond with 3 to 4 words to summarize the past conversation.",
-        topic = {
-          model = "claude-3-haiku-20240307",
-          params = { max_tokens = 32 },
-        },
-        params = {
-          chat = {
-            max_tokens = 4096,
-            -- thinking = {
-            --   budget_tokens = 1024,
-            --   type = "enabled",
-            -- },
-          },
-          command = { max_tokens = 4096 },
-        },
-      },
-      -- openrouter = {
-      --   name = "openrouter",
-      --   api_key = os.getenv("OPENROUTER_API_KEY"),
-      --   endpoint = "https://openrouter.ai/api/v1/chat/completions",
-      --   model = { "deepseek/deepseek-chat-v3-0324" },
-      --   topic_prompt = "You only respond with 3 to 4 words to summarize the past conversation.",
-      -- },
-      --
-    },
+    providers = providers,
     cmd_prefix = "Prt",
     chat_conceal_model_params = false,
     user_input_ui = "buffer",
